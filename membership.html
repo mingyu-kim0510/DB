@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <style>
+            .custom-image {
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <title>Hello, world!</title>
+    </head>
+    
+<body>
+<!--메뉴시작-->
+<nav>
+    <div class="text-center mt-4">
+        <b>회원가입</b>
+    </div>
+
+</nav>
+</nav>
+
+<div class="text-center form-group text-center mt-4">
+    <img src="C:\code\realkim\pick.png" alt="로고 이미지" class="custom-image" style="width: 187px;" >
+</div>
+
+
+
+
+
+<!--메뉴끝-->
+
+
+<!--회원가입 폼 -->
+<div class="container my-5">
+    <form method="post" action="/member/join_ok">
+        <div class="form-group">
+            <label for="userId">아이디</label>
+            <input type="text" class="form-control" id="userId" aria-describedby="emailHelp"
+            name="userId" placeholder="아이디를 입력하세요" required onblur="idCheck();">
+            <span id="check-result"></span><!--onkeyup -->
+            <!--비동기 전송방식으로 아이디 중복 / 팝업을 이용한 아이디 중복 -->
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">비밀번호</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="user_pass" placeholder="비밀번호를 입력하세요" required>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword2">비밀번호 확인</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" name="user_pass1" placeholder="비밀번호확인을 입력하세요" required>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword3">이름</label>
+            <input type="text" class="form-control" id="exampleInputPassword3" name="user_name" placeholder="이름을 입력하세요" required>
+        </div>
+
+    <button type="submit" class="btn btn-primary"> 회원가입   </button>
+    </form>
+
+</div>
+<!--회원가입 폼 끝-->
+
+
+
+<!-- 회원가입 추가 설정 -->
+<script th:inline="javascript">
+    const idCheck = () => {
+        const userId = document.getElementById("userId").value;
+        const checkResult = document.getElementById("check-result");
+        console.log("입력값: ", userId);
+        $.ajax({
+            type:"post",
+            url:"/member/id-check",
+            data: {
+               "userId":userId
+            },
+            success: function(res){
+                console.log("요청성공",res);
+                if (res =="ok") {
+                    console.log("사용가능한 아이디입니다.");
+                    checkResult.style.color = "blue";
+                    checkResult.innerHTML = "사용가능한 아이디입니다.";
+                 } else {
+                    console.log("이미 사용중인 아이디입니다.");
+                    checkResult.style.co.kr ="red";
+                    checkResult.innerHTML = "이미 사용중인 아이디입니다.";
+                 }
+
+            },
+            error: function(err){
+                console.log("에러발생",err);
+            }
+        });
+    }
+</script>
+<!-- 회원가입 추가 설정 끝 -->
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "userId": 1,
+      "content": "HTML",
+      "completed": true,
+      "regDate": "20221027101939"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "content": "CSS",
+      "completed": false,
+      "regDate": "20221027101939"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "content": "Javascript",
+      "completed": false,
+      "regDate": "20221027101939"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "content": "Fake Todo",
+      "completed": false,
+      "regDate": "20221027101939"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "test01@test.com",
+      "password": "a1234",
+      "name": "Hee",
+      "regDate": "20221026102030"
+    },
+    {
+      "id": 2,
+      "email": "test02@test.com",
+      "password": "1234",
+      "name": "Kim",
+      "regDate": "20221026102030"
+    }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "fake title",
+      "content": "fake content",
+      "thumnail": "/files/12341234.jpb",
+      "regDate": "20221027041408"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "fake title",
+      "content": "fake content",
+      "thumnail": "/files/12341234.jpb",
+      "regDate": "20221027041417"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "fake title",
+      "content": "fake content",
+      "thumnail": "/files/12341234.jpb",
+      "regDate": "20221028014556"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "fake title",
+      "content": "fake content",
+      "thumnail": "/files/12341234.jpb",
+      "regDate": "20221028014703"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "title": "fake title",
+      "content": "fake content",
+      "thumnail": "/files/12341234.jpb",
+      "regDate": "20221028014839"
+    }
+  ],
+  "tokens": []
+}

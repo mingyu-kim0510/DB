@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 350px"></div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a60f3d84b7f116c14704f41f21b85a1f"></script>
+  <script src="/js/mcore.min.js"></script>
+  <script src="/js/jquery.plugin.js"></script>
+  <script>
+    (function () {
+      $(function () {
+        $.getCurrentLocation().then((result) => {
+          if (result.status === 'NS') {
+            console.log('This Location Plugin is not supported');
+          } else if (result.status !== 'SUCCESS') {
+            if (result.message) {
+              console.log(result.status + ':' + result.message);
+            } else {
+              console.log('Getting GPS coords is failed');
+            }
+          } else {
+            if (result.coords) {
+              var { latitude, longitude } = result.coords;
+              var lat = parseFloat(latitude);
+              var lon = parseFloat(longitude);
+              console.log(lat, lon);
+              var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                mapOption = {
+                  center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+                  level: 3, // 지도의 확대 레벨
+                };
+
+              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+              var map = new kakao.maps.Map(mapContainer, mapOption);
+            } else {
+              console.log("It cann't get GPS Coords.");
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</html>

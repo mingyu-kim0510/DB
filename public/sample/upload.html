@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Success Login</h1>
+    <div>
+      <button id="pick-image">Image 선택하기</button>
+    </div>
+    <div id="preview-box">
+      <!-- 이미지를 미리보기 생성 -->
+    </div>
+    <div>
+      <button id="upload-image">Image 업로드하기</button>
+    </div>
+    <div id="upload-image-box">
+      <!--  업로드된 경로로 이미지 태그 생성 -->
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/mcore.min.js"></script>
+  <script src="/js/jquery.plugin.js"></script>
+  <script>
+    (function () {
+      // 스코프 보장
+
+      $(function () {
+        // upload  이벤트
+        var $pickImage = $('#pick-image');
+        var $previewBox = $('#preview-box');
+        var $uploadImage = $('#upload-image');
+        var $uploadImageBox = $('#upload-image-box');
+        var _selectImage;
+
+        $pickImage.on('click', function () {
+          // 이미지 가져오기
+          $.imagePicker()
+            .then(({ status, result }) => {
+              if (status === 'SUCCESS') {
+                _selectImage = result.path;
+                return $.img2base64(_selectImage);
+              } else {
+                _selectImage = null;
+                return Promise.reject('이미지를 가져오지 못했습니다.');
+              }
+            })
+            .then(({ status, result }) => {
+              if (status === 'SUCCESS') {
+                // result 는 base64
+                $previewBox.empty();
+                var $img = $(document.createElement('img'));
+                $img.attr('src', `data:image/png;base64,${result.data}`);
+                $img.attr('width', '300px');
+                $previewBox.append($img);
+              } else {
+                return Promise.reject('BASE64변환이 실패하였습니다.');
+              }
+            })
+            .catch((err) => {
+              if (typeof err === 'string') {
+                M.pop.alert(err);
+              }
+              console.error(err);
+            });
+        });
+
+        $uploadImage.on('click', function () {
+          if (!_selectImage) return M.pop.alert('이미지를 선택해주세요.');
+          $.uploadImage(_selectImage, (total, current) => {
+            console.log(`${current}/${total}`);
+          }).then(({ status, header, body }) => {
+            if (status === '200') {
+              var { fullpath } = JSON.parse(body);
+              $uploadImageBox.empty();
+              var $img = $(document.createElement('img'));
+              $img.attr('src', fullpath);
+              $img.attr('width', '300px');
+              $uploadImageBox.append($img);
+            } else {
+              return Promise.reject('업로드를 실패하였습니다.');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</html>

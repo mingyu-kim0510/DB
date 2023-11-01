@@ -1,167 +1,163 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-    h1{
-      margin-top: 50px;
-    }
-    
-    img {
-      margin-top: 30px;
-      width: 270px; 
-      height: auto; 
-      display: block; 
-      margin: 0 auto;
-    }
-    
-    
-    input {
-      width: 350px;
-      height: 50px;
-      line-height: 50px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-bottom: 2.5px solid darkgray;
-    }
-    button {
-      width: 100%;
-      height: 60px;
-      font-size: 25px;
-      font-weight: bold;
-      color: white;
-      background-color: coral;
-      border: none;
-      border-radius: 4px;
-      float: right;
-    }
-    #submit {
-      margin-top: 40px;;
-    }
-    #button {
-      margin-top: 40px;
-      margin-bottom: 151px;
-    }
-    nav{
-      width: 392px;
-      height: 105px;
-      background-color: lightgrey;
-    }
-    .navbar-brand > img {
-      width: 60px; 
-      height: auto; 
-      display: block; 
-      margin: 0 auto; 
-    }
-    .navbar .container-fluid {
-      display: flex;
-      justify-content: space-around; 
-      align-items: center; 
-    }
-    .navbar .navbar-brand {
-      margin: 0;
-      height: 100%;
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1{
+            font-weight: bold;
+        }
+        img {
+            margin-top: 30px;
+            width: 270px; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto;
+        }
+        /* 이메일, 비밀번호 입력칸 크기 설정*/
+        input.custom-input {
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 0%;
+            border: none;
+            border-bottom: 2.5px solid darkgray;
+        }
+        /* 버튼 크기 설정 */
+        .custom-button {
+            width: 80%; /* 버튼의 너비 설정 */
+            height: 50px; /* 버튼의 높이 설정 */
+            font-size: 18px; /* 글꼴 크기 설정 */
+            font-weight: bold; /* 글꼴 두껍게 설정 */
+        }
+
+        /* 버튼 색상 설정 */
+        .btn-primary-custom {
+            background-color: coral; /* 원하는 배경색 설정 */
+            color: white; /* 텍스트 색상 설정 */
+            border: none; /* 테두리 제거 */
+        }
+
+        /* 버튼 호버(마우스를 올렸을 때) 색상 설정 */
+        .btn-primary-custom:hover {
+            background-color: rgb(255, 96, 38); /* 호버 상태에서 배경색 변경 */
+        }
+        /* 하단바 배경 설정 */
+        nav{
+            height: 70px;
+            background-color: lightgrey;
+        }
+        /* 하단바 버튼 이미지 설정 */
+        .navbar-brand > img {
+            width: 40px; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto; 
+        }
+        .navbar .container-fluid {
+            display: flex;
+            justify-content: space-around; 
+            align-items: center; 
+        }
+        .navbar .navbar-brand {
+            margin: 0;
+            height: 100%;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <h1>로그인</h1>
-      <div>
-        <img src="/src/image/user.png">
-      </div>
-      <div>
-        <input id="useremail" type="text" placeholder=" 이메일 입력">
-      </div>
-      <br>
-      <div>
-        <input id="password" type="password" placeholder=" 비밀번호 입력">
-      </div>
-      <div class="button">
-        <button id="submit">로그인</button>
-      </div>
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="text-center mt-4">
+                    <h1>로그인</h1>
+                </div>
+                <div class="mt-3">
+                    <img src="/src/image/user.png">
+                </div>
+                <form>
+                    <div class="form-group text-center mt-3">
+                        <input type="email" class="form-control custom-input" id="email" placeholder="이메일 입력">
+                    </div>
+                        <div class="form-group text-center mt-3 mb-5">
+                            <input type="password" class="form-control custom-input" id="password" placeholder="비밀번호 입력">
+                        </div>
+                        <div class="text-center mt-5">
+                            <button type="submit" class="btn btn-primary-custom custom-button">로그인</button>
+                        </div>
+                        <div class="text-center mt-5">
+                            <button href="회원가입 페이지 링크" class="btn btn-primary-custom custom-button">회원가입</button>
+                        </div>
+                        <nav class="navbar navbar-lg fixed-bottom bg-body-tertiary">                                <br class="margin">
+                                <div class="container-fluid">
+                                <a class="navbar-brand" href="#"><img src="/src/image/home.png"></a>
+                                <a class="navbar-brand" href="#"><img src="/src/image/map.png"></a>
+                                <a class="navbar-brand" href="#"><img src="/src/image/account.png"></a>
+                            </div>
+                        </nav>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <button id="button">회원가입</button>
-    </div>
-  </div>
-  <div>
-    <nav class="navbar fixed-bottom bg-body-tertiary">
-      <br class="margin">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/src/image/home.png"></a>
-        <a class="navbar-brand" href="#"><img src="/src/image/map.png"></a>
-        <a class="navbar-brand" href="#"><img src="/src/image/account.png"></a>
-      </div>
-    </nav>
-  </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/js/mcore.min.js"></script>
+    <!-- 부트스트랩 JS 및 jQuery 추가 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
- // 즉시실행함수를 통해 스코프를 분리
-(function () {
+  // 즉시실행함수를 통해 스코프를 분리
+  (function () {
+    var AUTO_LOGIN_KEY = 'AUTO_LOGIN';
 
-var AUTO_LOGIN_KEY = 'AUTO_LOGIN';
+    $(function () {
+      // onload 이벤트 함수
+      var autoLogin = M.data.storage(AUTO_LOGIN_KEY);
 
-$(function () {
-  // onload 이벤트 함수
+      if (autoLogin) {
+        alert(JSON.stringify(autoLogin, null, 4));
+        location.href = '/sample/upload.html';
+        return;
+      }
 
-  var autoLogin = M.data.storage(AUTO_LOGIN_KEY)
+      // jQuery Element 이다.
+      var $username = $('#username');
+      var $password = $('#password');
+      var $submit = $('#submit');
 
-  if(autoLogin) {
-    alert(JSON.stringify(autoLogin, null, 4))
-    location.href='/sample/upload.html'
-    return;
-  }
+      $submit.on('click', function () {
+        // id가 submit 인 엘리먼트의 Click 이벤트를 바인딩
+        var username = $username.val();
+        var password = $password.val();
+        var err;
 
-  // jQuery Element 이다.
-  var $username = $('#username')
-  var $password = $('#password')
-  var $submit = $('#submit')
+        if (username !== 'test') {
+          err = '아이디가 올바르지 않습니다.';
+        }
 
-  $submit.on('click', function () {
-    // id가 submit 인 엘리먼트의 Click 이벤트를 바인딩
-    var username = $username.val();
-    var password = $password.val();
-    var err;
+        if (password !== '1111') {
+          err = '비밀번호가 올바르지 않습니다.';
+        }
 
-    if(username !== 'test') {
-      err = '아이디가 올바르지 않습니다.'
-    }
+        if (err) return M.pop.alert(err);
 
-    if(password !== '1111') {
-      err = '비밀번호가 올바르지 않습니다.'
-    }
+        // 자동 로그인
+        // Set Storage 영속적인 데이터
+        M.data.storage(AUTO_LOGIN_KEY, {
+          username: username,
+          password: password
+        });
 
-    if(err) return M.pop.alert(err);
-
-    // 자동 로그인
-    // Set Storage 영속적인 데이터
-    M.data.storage(AUTO_LOGIN_KEY, {
-      username: username,
-      password: password
-    })
-
-    // 로그인 성공시 upload로 이동
-    location.href='/sample/upload.html'
-
-  });
-
-})
-
-
-})();
+        // 로그인 성공시 upload로 이동
+        location.href = '/sample/upload.html';
+      });
+    });
+  })();
 </script>
 </html>

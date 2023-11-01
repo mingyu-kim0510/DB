@@ -1,78 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    img {
+      width: 270px; /* Adjust the width as needed */
+      height: auto; /* Maintain the aspect ratio */
+      display: block; /* Remove any extra space below the image */
+      margin: 0 auto; /* Center the image horizontally */
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    h1{
+      margin-top: 50px;
+      text-align: center;
+    }
+    input {
+      width: 350px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-bottom: 2.5px solid darkgray;
+    }
+    #submit {
+      width: 80px;
+      height: 60px;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      background-color: coral;
+      border: none;
+      border-radius: 4px;
+      float: right;
+    }
+    #button {
+      width: 100%;
+      height: 60px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      background-color: coral;
+      border: none;
+      border-radius: 4px;
+      float: right;
+    }
+    .line-container {
+      display: flex; /* 가로로 요소 배치 */
+      align-items: center; /* 요소를 세로 가운데 정렬 */
+    }
+
+    .horizontal-line {
+      flex: 1; /* 남은 공간을 선이 차지하도록 함 */
+      border: 1.5px solid darkgray; /* 선의 스타일 지정 */
+    }
+
+    /* 텍스트 스타일링 */
+    .text {
+      margin: 0 10px; /* 텍스트 좌우 여백 설정 */
+      font-size: 20px; /* 글자 크기 */
+      font-weight: bold;
+      color: #333; /* 글자 색상 */
+    }
+    nav{
+      width: 392px;
+      height: 105px;
+      background-color: lightgrey;
+    }
+    .navbar-brand > img {
+      width: 60px; 
+      height: auto; 
+      display: block; 
+      margin: 0 auto; 
+    }
+    .navbar .container-fluid {
+      display: flex;
+      justify-content: space-around; 
+      align-items: center; 
+    }
+    .navbar .navbar-brand {
+      margin: 0;
+      height: 100%;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div>
-    <label>ID : </label>
-    <input id="username" type="text">
+  <div class="container">
+    <div class="row">
+      <h1>로그인</h1>
+      <div>
+        <img src="/src/image/user.png">
+      </div>
+      <div>
+        <input id="username" type="text" placeholder=" 이메일 입력">
+      </div>
+      <br>
+      <div>
+        <input id="password" type="password" placeholder=" 비밀번호 입력">
+      </div>
+      <br>
+      <br>
+      <div>
+        <button id="submit">>></button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="line-container">
+      <div class="horizontal-line"></div>
+      <div class="text">or</div>
+      <div class="horizontal-line"></div>
+    </div>
+    <br>
+    <div>
+      <button id="button">회원가입</button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
   <div>
-    <label>PW : </label>
-    <input id="password" type="password">
-  </div>
-  <div>
-    <button id="submit">Login Do</button>
+    <nav class="navbar fixed-bottom bg-body-tertiary">
+      <br class="margin">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/src/image/home.png"></a>
+        <a class="navbar-brand" href="#"><img src="/src/image/map.png"></a>
+        <a class="navbar-brand" href="#"><img src="/src/image/account.png"></a>
+      </div>
+    </nav>
   </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/mcore.min.js"></script>
 <script>
-  // 즉시실행함수를 통해 스코프를 분리
-(function () {
+ // 즉시실행함수를 통해 스코프를 분리
 
-  var AUTO_LOGIN_KEY = 'AUTO_LOGIN';
-
-  $(function () {
-    // onload 이벤트 함수
-
-    var autoLogin = M.data.storage(AUTO_LOGIN_KEY)
-
-    if(autoLogin) {
-      alert(JSON.stringify(autoLogin, null, 4))
-      location.href='/sample/upload.html'
-      return;
-    }
-
-    // jQuery Element 이다.
-    var $username = $('#username')
-    var $password = $('#password')
-    var $submit = $('#submit')
-
-    $submit.on('click', function () {
-      // id가 submit 인 엘리먼트의 Click 이벤트를 바인딩
-      var username = $username.val();
-      var password = $password.val();
-      var err;
-
-      if(username !== 'test') {
-        err = '아이디가 올바르지 않습니다.'
-      }
-
-      if(password !== '1111') {
-        err = '비밀번호가 올바르지 않습니다.'
-      }
-
-      if(err) return M.pop.alert(err);
-
-      // 자동 로그인
-      // Set Storage 영속적인 데이터
-      M.data.storage(AUTO_LOGIN_KEY, {
-        username: username,
-        password: password
-      })
-
-      // 로그인 성공시 upload로 이동
-      location.href='/sample/upload.html'
-
-    });
-
-  })
-
-
-})();
+ 
 </script>
 </html>

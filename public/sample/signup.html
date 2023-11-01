@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+            }
+            h1 {
+                margin-top: 50px;
+            }
+            img {
+                width: 270px;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+            }
+            input {
+                width: 350px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 18px;
+                font-weight: bold;
+                border: none;
+                border-bottom: 2.5px solid darkgray;
+            }
+            button {
+                width: 100%;
+                height: 60px;
+                line-height: 60px;
+                font-size: 25px;
+                font-weight: bold;
+                color: white;
+                background-color: coral;
+                border: none;
+                border-radius: 4px;
+            }
+            nav{
+                margin-top: 174px;
+                width: 392px;
+                height: 105px;
+                background-color: lightgrey;
+            }
+            .navbar-brand > img {
+                width: 60px; 
+                height: auto; 
+                display: block; 
+                margin: 0 auto; 
+            }
+            .navbar .container-fluid {
+                display: flex;
+                justify-content: space-around; 
+                align-items: center; 
+            }
+            .navbar .navbar-brand {
+                margin: 0;
+                height: 100%;
+                margin-bottom: 20px;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <title>Signup</title>
+    </head>
+    
+<body>
+<!--메뉴시작-->
+
+    <div>
+        <h1>회원가입</h1>
+    </div>
+    <div class="text-center form-group text-center mt-4">
+        <img src="/src/image/user.png">
+    </div>
+    <!--메뉴끝-->
+
+    <!--회원가입 폼 -->
+    <div class="container my-5">
+        <form method="post" action="/member/join_ok">
+            <div class="form-group">
+                <input type="text" class="form-control" id="userId" aria-describedby="emailHelp"
+                name="userId" placeholder=" 이메일 입력" required onblur="idCheck();">
+                <span id="check-result"></span><!--onkeyup -->
+                <!--비동기 전송방식으로 아이디 중복 / 팝업을 이용한 아이디 중복 -->
+            </div>
+            <br>
+            <div>
+                <input type="password" id="exampleInputPassword1" name="user_pass" placeholder=" 비밀번호 입력" required>
+            </div>
+            <br>
+            <div>
+                <input type="password" id="exampleInputPassword2" name="user_pass1" placeholder=" 비밀번호 재입력" required>
+            </div>
+            <br>
+            <br>
+            <button type="submit">가입</button>
+        </form>
+    </div>
+    <div>
+        <nav class="navbar fixed-bottom bg-body-tertiary">
+            <br>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="/src/image/home.png"></a>
+                <a class="navbar-brand" href="#"><img src="/src/image/map.png"></a>
+                <a class="navbar-brand" href="#"><img src="/src/image/account.png"></a>
+            </div>
+        </nav>
+    </div>
+    <!--회원가입 폼 끝-->
+
+    <!-- 회원가입 추가 설정 -->
+<script th:inline="javascript">
+    const idCheck = () => {
+        const userId = document.getElementById("userId").value;
+        const checkResult = document.getElementById("check-result");
+        console.log("입력값: ", userId);
+        $.ajax({
+            type:"post",
+            url:"/member/id-check",
+            data: {
+               "userId":userId
+            },
+            success: function(res){
+                console.log("요청성공",res);
+                if (res =="ok") {
+                    console.log("사용가능한 아이디입니다.");
+                    checkResult.style.color = "blue";
+                    checkResult.innerHTML = "사용가능한 아이디입니다.";
+                 } else {
+                    console.log("이미 사용중인 아이디입니다.");
+                    checkResult.style.co.kr ="red";
+                    checkResult.innerHTML = "이미 사용중인 아이디입니다.";
+                 }
+
+            },
+            error: function(err){
+                console.log("에러발생",err);
+            }
+        });
+    }
+</script>
+<!-- 회원가입 추가 설정 끝 -->
+
+
+</body>
+</html>

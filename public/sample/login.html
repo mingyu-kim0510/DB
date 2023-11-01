@@ -3,18 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-  <title>Document</title>
-=======
   <title>Login</title>
->>>>>>> 634a24299c6cdf7eb616718d89b3e46bb3be7ba8
   <style>
-    img {
-      width: 270px; /* Adjust the width as needed */
-      height: auto; /* Maintain the aspect ratio */
-      display: block; /* Remove any extra space below the image */
-      margin: 0 auto; /* Center the image horizontally */
-    }
     body {
       display: flex;
       flex-direction: column;
@@ -24,8 +14,17 @@
     }
     h1{
       margin-top: 50px;
-      text-align: center;
     }
+    
+    img {
+      margin-top: 30px;
+      width: 270px; 
+      height: auto; 
+      display: block; 
+      margin: 0 auto;
+    }
+    
+    
     input {
       width: 350px;
       height: 50px;
@@ -35,21 +34,10 @@
       border: none;
       border-bottom: 2.5px solid darkgray;
     }
-    #submit {
-      width: 80px;
-      height: 60px;
-      font-size: 40px;
-      font-weight: bold;
-      color: white;
-      background-color: coral;
-      border: none;
-      border-radius: 4px;
-      float: right;
-    }
-    #button {
+    button {
       width: 100%;
       height: 60px;
-      font-size: 20px;
+      font-size: 25px;
       font-weight: bold;
       color: white;
       background-color: coral;
@@ -57,22 +45,12 @@
       border-radius: 4px;
       float: right;
     }
-    .line-container {
-      display: flex; /* 가로로 요소 배치 */
-      align-items: center; /* 요소를 세로 가운데 정렬 */
+    #submit {
+      margin-top: 40px;;
     }
-
-    .horizontal-line {
-      flex: 1; /* 남은 공간을 선이 차지하도록 함 */
-      border: 1.5px solid darkgray; /* 선의 스타일 지정 */
-    }
-
-    /* 텍스트 스타일링 */
-    .text {
-      margin: 0 10px; /* 텍스트 좌우 여백 설정 */
-      font-size: 20px; /* 글자 크기 */
-      font-weight: bold;
-      color: #333; /* 글자 색상 */
+    #button {
+      margin-top: 40px;
+      margin-bottom: 151px;
     }
     nav{
       width: 392px;
@@ -105,47 +83,18 @@
         <img src="/src/image/user.png">
       </div>
       <div>
-<<<<<<< HEAD
-        <input id="username" type="text" placeholder=" 이메일 입력">
-=======
         <input id="useremail" type="text" placeholder=" 이메일 입력">
->>>>>>> 634a24299c6cdf7eb616718d89b3e46bb3be7ba8
       </div>
       <br>
       <div>
         <input id="password" type="password" placeholder=" 비밀번호 입력">
       </div>
-      <br>
-      <br>
-      <div>
-        <button id="submit">>></button>
+      <div class="button">
+        <button id="submit">로그인</button>
       </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
     </div>
-    <div class="line-container">
-      <div class="horizontal-line"></div>
-      <div class="text">or</div>
-      <div class="horizontal-line"></div>
+    <button id="button">회원가입</button>
     </div>
-<<<<<<< HEAD
-    <br>
-    <div>
-=======
-    <br>rkdtjrw
->>>>>>> 634a24299c6cdf7eb616718d89b3e46bb3be7ba8
-      <button id="button">회원가입</button>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
   <div>
     <nav class="navbar fixed-bottom bg-body-tertiary">
@@ -162,10 +111,6 @@
 <script src="/js/mcore.min.js"></script>
 <script>
  // 즉시실행함수를 통해 스코프를 분리
-<<<<<<< HEAD
-
- 
-=======
 (function () {
 
 var AUTO_LOGIN_KEY = 'AUTO_LOGIN';
@@ -218,6 +163,5 @@ $(function () {
 
 
 })();
->>>>>>> 634a24299c6cdf7eb616718d89b3e46bb3be7ba8
 </script>
 </html>

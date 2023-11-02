@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <label>ID : </label>
+    <input id="username" type="text">
+  </div>
+  <div>
+    <label>PW : </label>
+    <input id="password" type="password">
+  </div>
+  <div>
+    <button id="submit">Login Do</button>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/mcore.min.js"></script>
+<script>
+  // 즉시실행함수를 통해 스코프를 분리
+(function () {
+
+  var AUTO_LOGIN_KEY = 'AUTO_LOGIN';
+
+  $(function () {
+    // onload 이벤트 함수
+
+    var autoLogin = M.data.storage(AUTO_LOGIN_KEY)
+
+    if(autoLogin) {
+      alert(JSON.stringify(autoLogin, null, 4))
+      location.href='/sample/upload.html'
+      return;
+    }
+
+    // jQuery Element 이다.
+    var $username = $('#username')
+    var $password = $('#password')
+    var $submit = $('#submit')
+
+    $submit.on('click', function () {
+      // id가 submit 인 엘리먼트의 Click 이벤트를 바인딩
+      var username = $username.val();
+      var password = $password.val();
+      var err;
+
+      if(username !== 'test') {
+        err = '아이디가 올바르지 않습니다.'
+      }
+
+      if(password !== '1111') {
+        err = '비밀번호가 올바르지 않습니다.'
+      }
+
+      if(err) return M.pop.alert(err);
+
+      // 자동 로그인
+      // Set Storage 영속적인 데이터
+      M.data.storage(AUTO_LOGIN_KEY, {
+        username: username,
+        password: password
+      })
+
+      // 로그인 성공시 upload로 이동
+      location.href='/sample/upload.html'
+
+    });
+
+  })
+
+
+})();
+</script>
+</html>

@@ -10,6 +10,7 @@
     "serve": "cross-env NODE_ENV=development node src/index.js "
   },
   "dependencies": {
+    "bootstrap-icons": "^1.11.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.0",
     "dayjs": "^1.11.6",

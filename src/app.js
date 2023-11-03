@@ -20,7 +20,7 @@ const middlewares = jsonServer.defaults({ logger: true, noCors: config.cors });
 
 app.use(morgan.successHandler);
 app.use(morgan.errorHandler);
-
+app.use(express.static('src'))
 app.use(
   require('express-session')({
     secret: 'mysession',

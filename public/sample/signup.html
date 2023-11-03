@@ -1,158 +1,74 @@
-<!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <style>
-            h1{
-            font-weight: bold;
-            }
-            img {
-                margin-top: 30px;
-                width: 270px; 
-                height: auto; 
-                display: block; 
-                margin: 0 auto;
-            }
-            /* 이메일, 비밀번호 입력칸 크기 설정*/
-        input.custom-input {
-            height: 50px;
-            line-height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 0%;
-            border: none;
-            border-bottom: 2.5px solid darkgray;
-        }
-        /* 버튼 크기 설정 */
-        .custom-button {
-            width: 80%; /* 버튼의 너비 설정 */
-            height: 50px; /* 버튼의 높이 설정 */
-            font-size: 18px; /* 글꼴 크기 설정 */
-            font-weight: bold; /* 글꼴 두껍게 설정 */
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<style>
+    /* 하단바 버튼 간격 설정 */
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: space-around; 
+        align-items: center; 
+    }
+    nav {
+        height:70px;
+        background-color: rgb(255, 207, 190);
+    }
+    .navbar .navbar-brand {  
+        margin: 0;
+        height: 100%;
+        margin-bottom: 10px;
+    }
+</style>
 
-        /* 버튼 색상 설정 */
-        .btn-primary-custom {
-            background-color: coral; /* 원하는 배경색 설정 */
-            color: white; /* 텍스트 색상 설정 */
-            border: none; /* 테두리 제거 */
-        }
-
-        /* 버튼 호버(마우스를 올렸을 때) 색상 설정 */
-        .btn-primary-custom:hover {
-            background-color: rgb(255, 96, 38); /* 호버 상태에서 배경색 변경 */
-        }
-        /* 하단바 배경 설정 */
-        nav{
-            height: 70px;
-            background-color: lightgrey;
-        }
-        /* 하단바 버튼 이미지 설정 */
-        .navbar-brand > img {
-            width: 40px; 
-            height: auto; 
-            display: block; 
-            margin: 0 auto; 
-        }
-        .navbar .container-fluid {
-            display: flex;
-            justify-content: space-around; 
-            align-items: center; 
-        }
-        .navbar .navbar-brand {
-            margin: 0;
-            height: 100%;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-bottom: 20px;
-        }
-        </style>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <title>Signup</title>
-    </head>
-    
+</head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-6">
-                    <!--메뉴시작-->
-                    <div class="text-center mt-4">
-                        <h1>회원가입</h1>
-                    </div>
-                    <div class="mt-3">
-                        <img src="/src/image/user.png">
-                    </div>
-                    <!--메뉴끝-->
+    <div class="container my-5 text-center">
+        <div class="display-4 mb-5 fw-bold">회원가입</div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-circle mt-4 mb-3" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+    </div>
 
-                    <!--회원가입 폼 -->
-                    <div class="container my-3">
-                        <form method="post" action="/member/join_ok">
-                            <div class="form-group">
-                                <input type="text" class="form-control custom-input" id="userId" aria-describedby="emailHelp"
-                                name="userId" placeholder=" 아이디 입력" required onblur="idCheck();">
-                                <span id="check-result"></span><!--onkeyup -->
-                                <!--비동기 전송방식으로 아이디 중복 / 팝업을 이용한 아이디 중복 -->
-                            </div>
-                            <div class="form-group mt-4">
-                                <input type="password" class="form-control custom-input" id="exampleInputPassword1" name="user_pass" placeholder=" 비밀번호 입력" required>
-                            </div>
-                            <div class="form-group mt-4 mb-5">
-                                <input type="password" class="form-control custom-input" id="exampleInputPassword2" name="user_pass1" placeholder=" 비밀번호 확인" required>
-                            </div>
-                            <div class="text-center my-4">
-                                <button type="submit" class="btn btn-primary-custom custom-button"> 회원가입</button>
-                            </div>
-                            <nav class="navbar navbar-lg fixed-bottom bg-body-tertiary">                                <br class="margin">
-                                <div class="container-fluid">
-                                <a class="navbar-brand" href="#"><img src="/src/image/home.png"></a>
-                                <a class="navbar-brand" href="#"><img src="/src/image/map.png"></a>
-                                <a class="navbar-brand" href="#"><img src="/src/image/account.png"></a>
-                            </div>
-                        </nav>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div class="container mt-5 fw-bold">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="이메일 입력">
+            <label for="floatingInput">이메일 입력</label>
         </div>
-                    <!--회원가입 폼 끝-->
-
-
-
-    <!-- 회원가입 추가 설정 -->
-    <script th:inline="javascript">
-        const idCheck = () => {
-            const userId = document.getElementById("userId").value;
-            const checkResult = document.getElementById("check-result");
-            console.log("입력값: ", userId);
-            $.ajax({
-                type:"post",
-                url:"/member/id-check",
-                data: {
-                "userId":userId
-                },
-                success: function(res){
-                    console.log("요청성공",res);
-                    if (res =="ok") {
-                        console.log("사용가능한 아이디입니다.");
-                        checkResult.style.color = "blue";
-                        checkResult.innerHTML = "사용가능한 아이디입니다.";
-                    } else {
-                        console.log("이미 사용중인 아이디입니다.");
-                        checkResult.style.co.kr ="red";
-                        checkResult.innerHTML = "이미 사용중인 아이디입니다.";
-                    }
-
-                },
-                error: function(err){
-                    console.log("에러발생",err);
-                }
-            });
-        }
-    </script>
-    <!-- 회원가입 추가 설정 끝 -->
-
-
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="비밀번호 입력">
+            <label for="floatingPassword">비밀번호 입력</label>
+        </div>
+        <div class="form-floating mb-5">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="비밀번호 재입력">
+            <label for="floatingPassword">비밀번호 재입력</label>
+        </div>
+        <button type="button" class="btn btn-primary w-100 btn-lg fw-bold" style="border: none; background-color: coral;">회원가입</button>
+    </div>
+    <nav class="navbar navbar-lg fixed-bottom bg-body-tertiary">                                
+        <br class="margin">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16" color="black">
+                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                </svg>
+            </a>
+            <a class="navbar-brand" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16" color="black">
+                    <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+                </svg>
+            </a>
+            <a class="navbar-brand" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16" color="black">
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
 </body>
 </html>

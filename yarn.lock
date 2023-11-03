@@ -373,6 +373,11 @@ body-parser@^1.19.0, body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
+bootstrap-icons@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.npmjs.org/bootstrap-icons/-/bootstrap-icons-1.11.1.tgz"
+  integrity sha512-F0DDp7nKUX+x/QtpfRZ+XHFya60ng9nfdpdS59vDDfs4Uhuxp7zym/QavMsu/xx51txkoM9eVmpE7D08N35blw==
+
 boxen@^5.0.0:
   version "5.1.2"
   resolved "https://registry.npmjs.org/boxen/-/boxen-5.1.2.tgz"

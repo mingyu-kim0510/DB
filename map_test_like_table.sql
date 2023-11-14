@@ -31,7 +31,7 @@ CREATE TABLE `like_table` (
   KEY `FKky5nonqn1l7n04jkvvu2x6ve5` (`user_idx`),
   CONSTRAINT `FKawoossr0wr2xvkpg1j14g045v` FOREIGN KEY (`store_idx`) REFERENCES `store_table` (`store_idx`),
   CONSTRAINT `FKky5nonqn1l7n04jkvvu2x6ve5` FOREIGN KEY (`user_idx`) REFERENCES `user_table` (`user_idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `like_table` (
 
 LOCK TABLES `like_table` WRITE;
 /*!40000 ALTER TABLE `like_table` DISABLE KEYS */;
-INSERT INTO `like_table` VALUES (32,5614,1);
+INSERT INTO `like_table` VALUES (36,13236,1),(43,7925,1),(50,13678,1);
 /*!40000 ALTER TABLE `like_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-13 10:32:59
+-- Dump completed on 2023-11-14 22:13:28
